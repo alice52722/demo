@@ -1,10 +1,10 @@
-		sourabhs4hu@htb[/htb]$ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
+$ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
 		
-		sourabhs4hu@htb[/htb]$ unzip aquatone_linux_amd64_1.7.0.zip 
+$ unzip aquatone_linux_amd64_1.7.0.zip 
 		
-		sourabhs4hu@htb[/htb]$ echo $PATH
+$ echo $PATH
 
 /home/mrb3n/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
-		sourabhs4hu@htb[/htb]$ cat web_discovery.xml | ./aquatone -nmap
+$ cat web_discovery.xml | ./aquatone -nmap
 		
