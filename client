@@ -21,3 +21,15 @@ xfreerdp /v:10.129.95.200 /u:Administrator /p:"xcyj8izxNVzhf4z" /cert:ignore /se
 where /R C:\ MultimasterAPI.dll
 
 Get-ChildItem C:\ -Recurse -Filter "MultimasterAPI.dll" -ErrorAction SilentlyContinue
+
+mkdir -p /home/sourabh/share
+
+xfreerdp /u:USERNAME /p:PASSWORD /v:10.129.95.200 /drive:share,/home/sourabh/share
+
+\\tsclient\share
+
+copy C:\inetpub\wwwroot\bin\MultimasterAPI.dll \\tsclient\share\
+
+Copy-Item "C:\inetpub\wwwroot\bin\MultimasterAPI.dll" "\\tsclient\share\"
+
+/home/sourabh/share
