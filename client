@@ -18,6 +18,6 @@ gobuster vhost -u http://inlanefreight.htb/ -w /usr/share/seclists/Discovery/DNS
 
 xfreerdp /v:10.129.95.200 /u:Administrator /p:"xcyj8izxNVzhf4z" /cert:ignore /sec:rdp
 
-where /R C:\ xato-net-10-million-passwords-10000.txt
+where /R C:\ MultimasterAPI.dll
 
-Get-ChildItem C:\ -Recurse -Filter "xato-net-10-million-passwords-10000.txt" -ErrorAction SilentlyContinue
+Get-ChildItem C:\ -Recurse -Filter "MultimasterAPI.dll" -ErrorAction SilentlyContinue
